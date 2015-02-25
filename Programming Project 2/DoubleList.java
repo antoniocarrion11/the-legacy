@@ -1,16 +1,17 @@
-import java.io.*;
+import java.util.*;
 
 
 public class DoubleList<T> implements ListADT<T>{
     
-    private DoubleNode head;
-    private DoubleNode tail;
-    private DoubleNode current;
+    protected DoubleNode head;
+    protected DoubleNode tail;
+    protected DoubleNode current;
     
     //Constructor
-    public DoubleList(T Object){
+    public DoubleList(){
         
-        head = new DoubleNode(Object);
+        head = null;
+        tail = null;
         current = head;
     }
     
@@ -157,18 +158,28 @@ public class DoubleList<T> implements ListADT<T>{
         if(current == null)
             return count;
             
-        while(!(current.getNext().equals(null)){
+        while(!(current.getNext().equals(null))){
             count++;
             current = current.getNext();
         }
         return count;
     }
     
-    
+    /**  
+     * Returns an iterator for the elements in this list. 
+     *
+     * @return an iterator over the elements in this list
+     */
+    public Iterator<T> iterator(){
+        
+        DoubleIterator it = new DoubleIterator(head);
+        return it;
+    }
     
     //Inner class DoubleNode used to store Objects
-    private class DoubleNode{
+    protected class DoubleNode{
          
+         //References to nodes previous and next, and element in node
          private DoubleNode prev;
          private DoubleNode next;
          private T object;
@@ -179,6 +190,7 @@ public class DoubleList<T> implements ListADT<T>{
             this.object = object;
          }
          
+         //Get references to Nodes and Object
          public DoubleNode getPrev(){
             return prev;
          }
@@ -191,6 +203,7 @@ public class DoubleList<T> implements ListADT<T>{
             return object;
          }
          
+         //Change Fields
          public void setPrev(DoubleNode prev){
             this.prev = prev;
          }
@@ -204,5 +217,38 @@ public class DoubleList<T> implements ListADT<T>{
          }
          
     }
+    
+    //InnerClass DoubleIterator
+    public class DoubleIterator implements Iterator<T>{
+    
+    private DoubleNode current;
+    
+    public DoubleIterator(DoubleNode head){
+        
+        current = head;
+    }
+    
+    //Returns true if iteration has more methods
+    public boolean hasNext(){
+        
+        if(current.getNext().equals(null))
+            return false;
+        else
+            return true;
+    }
+    
+    //Returns the current element while setting current to the next node
+    public T next(){
+        T temp = current.getObject();
+        current = current.getNext();
+        return temp;
+    }
+    
+    //function not supported
+    public void remove() throws UnsupportedOperationException{
+        throw new UnsupportedOperationException();
+    }
+    
+}
 
 }

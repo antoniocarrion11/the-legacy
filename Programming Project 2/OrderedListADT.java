@@ -1,5 +1,3 @@
-package jsjf;
-
 /**
  * OrderedListADT defines the interface to an ordered list collection. Only
  * Comparable elements are stored, kept in the order determined by
