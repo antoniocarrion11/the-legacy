@@ -1,0 +1,8 @@
+<PRE> 
+#include &lt;iostream&gt;
+int main(){
+	int x = 4;
+	if (x &lt; 3) x++;
+		cout &lt;&lt; x &lt;&lt; end1;
+}
+</PRE>
