@@ -1,0 +1,9 @@
+@echo off
+del *.class
+javac Bead.java 
+javac OrangeBead.java 
+javac RedBead.java 
+javac BlueBead.java  
+javac Board.java 
+javac Player.java 
+javac Mancala.java 
